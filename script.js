@@ -27,7 +27,7 @@ document.getElementById("availability-form").addEventListener("submit", async (e
 
         if (result.status === "success") {
             alert("Availability updated!");
-            loadData(); // Refresh data
+            loadData(); // Refresh table
         } else {
             alert("Error: " + (result.error || "Unknown error"));
         }

@@ -1,9 +1,6 @@
-const form = document.getElementById("availability-form");
-const list = document.getElementById("availability-list");
+const API_URL = "https://script.google.com/macros/s/AKfycbzOQPrLbfVdTkJjC_ecQvUiX2zgfgtJiZBorEyMzMrjpIovNcP00HaBz-ebUW6MgUMd/exec"; // Replace with your actual Google Apps Script URL
 
-const API_URL = "https://script.google.com/macros/s/AKfycbzOQPrLbfVdTkJjC_ecQvUiX2zgfgtJiZBorEyMzMrjpIovNcP00HaBz-ebUW6MgUMd/exec"; // Replace with your Google Apps Script URL
-
-form.addEventListener("submit", async (event) => {
+document.getElementById("availability-form").addEventListener("submit", async (event) => {
     event.preventDefault();
 
     const name = document.getElementById("name").value.trim();
@@ -11,25 +8,52 @@ form.addEventListener("submit", async (event) => {
 
     if (!name) return alert("Please enter your name!");
 
-    // Send data to Google Sheets
-    await fetch(API_URL, {
-        method: "POST",
-        body: JSON.stringify({ name, meal }),
-        headers: { "Content-Type": "application/json" }
-    });
+    const requestData = { name, meal };
 
-    alert("Availability updated!");
-    form.reset();
-    loadData();
+    try {
+        const response = await fetch(API_URL, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(requestData)
+        });
+
+        const result = await response.json();
+        console.log("Server Response:", result);
+
+        if (result.status === "success") {
+            alert("Availability updated!");
+            loadData(); // Refresh data
+        } else {
+            alert("Error: " + (result.error || "Unknown error"));
+        }
+
+    } catch (error) {
+        console.error("Error:", error);
+        alert("Submission failed! Check the console for more details.");
+    }
 });
 
 async function loadData() {
-    const response = await fetch(API_URL);
-    const data = await response.json();
+    try {
+        const response = await fetch(API_URL);
+        const data = await response.json();
+        console.log("Fetched Data:", data);
 
-    list.innerHTML = data.map(entry => 
-        `<tr><td>${entry.name}</td><td>${entry.meal}</td></tr>`).join("");
+        if (!Array.isArray(data)) {
+            console.error("Invalid Data Format:", data);
+            return;
+        }
+
+        const list = document.getElementById("availability-list");
+        list.innerHTML = data.map(entry => 
+            `<tr><td>${entry.name}</td><td>${entry.meal}</td></tr>`
+        ).join("");
+    } catch (error) {
+        console.error("Error fetching data:", error);
+    }
 }
 
-// Load initial data
+// Load data on page load
 document.addEventListener("DOMContentLoaded", loadData);

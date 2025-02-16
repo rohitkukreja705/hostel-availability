@@ -22,12 +22,16 @@ document.getElementById("availability-form").addEventListener("submit", async (e
             body: JSON.stringify(requestData)
         });
 
+        if (!response.ok) {
+            throw new Error(`Server Error: ${response.status}`);
+        }
+
         const result = await response.json();
         console.log("Server Response:", result);
 
         if (result.status === "success") {
             alert("Availability updated!");
-            loadData(); // Refresh table
+            loadData(); // Refresh data
         } else {
             alert("Error: " + (result.error || "Unknown error"));
         }

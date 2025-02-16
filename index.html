@@ -4,33 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hostel Meal Availability</title>
-    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Hostel Meal Availability</h1>
-    
+    <h2>Hostel Meal Availability</h2>
+
     <form id="availability-form">
         <label for="name">Name:</label>
         <input type="text" id="name" required>
-        
+
         <label for="meal">Meal:</label>
         <select id="meal">
-            <option value="lunch">Lunch</option>
-            <option value="dinner">Dinner</option>
+            <option value="Lunch">Lunch</option>
+            <option value="Dinner">Dinner</option>
         </select>
 
         <button type="submit">Submit</button>
     </form>
 
-    <h2>Availability List</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Meal</th>
-            </tr>
-        </thead>
-        <tbody id="availability-list"></tbody>
+    <h3>Availability List</h3>
+    <table id="availability-table" border="1">
+        <tr>
+            <th>Name</th>
+            <th>Meal</th>
+            <th>Timestamp</th>
+        </tr>
+        <!-- Data will be inserted here -->
     </table>
 
     <script src="script.js"></script>

@@ -6,7 +6,10 @@ document.getElementById("availability-form").addEventListener("submit", async (e
     const name = document.getElementById("name").value.trim();
     const meal = document.getElementById("meal").value;
 
-    if (!name) return alert("Please enter your name!");
+    if (!name) {
+        alert("Please enter your name!");
+        return;
+    }
 
     const requestData = { name, meal };
 
@@ -34,26 +37,3 @@ document.getElementById("availability-form").addEventListener("submit", async (e
         alert("Submission failed! Check the console for more details.");
     }
 });
-
-async function loadData() {
-    try {
-        const response = await fetch(API_URL);
-        const data = await response.json();
-        console.log("Fetched Data:", data);
-
-        if (!Array.isArray(data)) {
-            console.error("Invalid Data Format:", data);
-            return;
-        }
-
-        const list = document.getElementById("availability-list");
-        list.innerHTML = data.map(entry => 
-            `<tr><td>${entry.name}</td><td>${entry.meal}</td></tr>`
-        ).join("");
-    } catch (error) {
-        console.error("Error fetching data:", error);
-    }
-}
-
-// Load data on page load
-document.addEventListener("DOMContentLoaded", loadData);

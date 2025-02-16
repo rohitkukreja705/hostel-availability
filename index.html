@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hostel Meal Availability</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Hostel Meal Availability</h1>
+    
+    <form id="availability-form">
+        <label for="name">Name:</label>
+        <input type="text" id="name" required>
+        
+        <label for="meal">Meal:</label>
+        <select id="meal">
+            <option value="lunch">Lunch</option>
+            <option value="dinner">Dinner</option>
+        </select>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <h2>Availability List</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Meal</th>
+            </tr>
+        </thead>
+        <tbody id="availability-list"></tbody>
+    </table>
+
+    <script src="script.js"></script>
+</body>
+</html>

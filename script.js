@@ -1,7 +1,7 @@
 const API_URL = "https://script.google.com/macros/s/AKfycbzOQPrLbfVdTkJjC_ecQvUiX2zgfgtJiZBorEyMzMrjpIovNcP00HaBz-ebUW6MgUMd/exec"; // Replace with your actual Google Apps Script URL
 
 document.addEventListener("DOMContentLoaded", () => {
-  loadData(); // Load data when the page loads
+  loadData(); // Load data when page loads
 });
 
 document.getElementById("availability-form").addEventListener("submit", async (event) => {
@@ -46,8 +46,3 @@ document.getElementById("availability-form").addEventListener("submit", async (e
         alert("Submission failed! Check the console for more details.");
     }
 });
-
-async function loadData() {
-    console.log("🔄 Fetching data...");
-    // Later, you can implement a GET request to fetch live data
-}

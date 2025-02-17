@@ -1,9 +1,5 @@
 const API_URL = "https://script.google.com/macros/s/AKfycbzOQPrLbfVdTkJjC_ecQvUiX2zgfgtJiZBorEyMzMrjpIovNcP00HaBz-ebUW6MgUMd/exec"; // Replace with your actual Google Apps Script URL
 
-document.addEventListener("DOMContentLoaded", () => {
-  loadData(); // Load data when page loads
-});
-
 document.getElementById("availability-form").addEventListener("submit", async (event) => {
     event.preventDefault();
 
@@ -36,11 +32,9 @@ document.getElementById("availability-form").addEventListener("submit", async (e
         if (result.status === "success") {
             alert("✅ Availability updated!");
             document.getElementById("availability-form").reset();
-            loadData(); // Refresh table
         } else {
-            alert("❌ Error: " + (result.error || "Unknown error"));
+            alert("❌ Error: " + (result.message || "Unknown error"));
         }
-
     } catch (error) {
         console.error("❌ Fetch Error:", error);
         alert("Submission failed! Check the console for more details.");

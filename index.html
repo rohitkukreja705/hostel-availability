@@ -4,33 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hostel Meal Availability</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+	<script defer src="script.js"></script>
+	<link rel="stylesheet" href="styles.css">
+
 </head>
+
 <body>
-    <h2>Hostel Meal Availability</h2>
-
+    <!-- Header with title -->
+    <header>
+        <h1>Q2 Girls Hostel</h1>
+        <p>Meal Availability for Lunch and Dinner</p>
+    </header>
+    <h1>Meal Availability</h1>
     <form id="availability-form">
-        <label for="name">Name:</label>
-        <input type="text" id="name" required>
-
-        <label for="meal">Meal:</label>
+        <input type="text" id="name" placeholder="Enter Your Name" required>
         <select id="meal">
-            <option value="Lunch">Lunch</option>
-            <option value="Dinner">Dinner</option>
+            <option value="lunch">Lunch</option>
+            <option value="dinner">Dinner</option>
         </select>
-
         <button type="submit">Submit</button>
     </form>
+	
+	<!-- Availability list section -->
+<section id="availability-list-section">
+    <h2>Availability</h2>
+    <table id="availability-table">
+    <tr>
+        <th>Meal</th>
+        <th>Count</th>
+    </tr>
+    <tr>
+        <td>Lunch</td>
+        <td id="lunch-count-value">0</td>
+    </tr>
+    <tr>
+        <td>Dinner</td>
+        <td id="dinner-count-value">0</td>
+    </tr>
+</table>
+    <!-- List of available students -->
+  	<ul id="availability-list"></ul>
+</section>
 
-    <h3>Availability List</h3>
-    <table id="availability-table" border="1">
-        <tr>
-            <th>Name</th>
-            <th>Meal</th>
-            <th>Timestamp</th>
-        </tr>
-        <!-- Data will be inserted here -->
-    </table>
-
-    <script src="script.js"></script>
 </body>
 </html>
